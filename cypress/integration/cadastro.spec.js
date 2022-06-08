@@ -10,7 +10,7 @@ describe('Validar o cadastro de cliente', () => {
         //cy.visit("http://automationpractice.com/")
         cy.get('.header_user_info').click()
         cy.get('#email_create').type("eduardo_fogaca@akaer.com.br")
-        cy.get('#SubmitCreate').click().wait(6000)
+        cy.get('#SubmitCreate').click().wait(5000)
         cy.get('.page-heading').should('contain.text', "Create an account")
     });
 
