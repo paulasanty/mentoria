@@ -1,0 +1,21 @@
+{
+  "name": "mentoria",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress open",
+    "headless": "npx cypress run --spec cypress/integration/cadastro.spec.js"
+  },
+  "keywords": [],
+  "author": "Paula Santiago",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^9.5.2",
+    "cypress-xpath": "^1.6.2",
+    "newman-reporter-htmlextra": "^1.22.9"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^6.1.1"
+  }
+}

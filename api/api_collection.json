@@ -1,0 +1,1105 @@
+{
+	"info": {
+		"_postman_id": "dcffd904-651b-45a2-b308-327fdbf85ed1",
+		"name": "API - Serve Rest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5081715"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Criar Usuario",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"pm.environment.set('idUsuario', responseBody._id)\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(201);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Tanya Ondricka\",\r\n  \"email\": \"Vincenza.Lueilwitz0@gmail.com\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"false\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api_serverest}}/usuarios",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Usuario ADM",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"pm.environment.set('idUsuarioADM', responseBody._id)\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"{{nome_ADM}}\",\r\n  \"email\": \"{{email_ADM}}\",\r\n  \"password\": \"{{passwordADM}}\",\r\n  \"administrador\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api_serverest}}/usuarios",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar usuários",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deve retornar a quantidade de usuário cadastrado\", function () {\r",
+									"    pm.expect(responseBody.quantidade).to.be.not.null\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_api_serverest}}/usuarios?_id={{idUsuario}}&nome={{nome}}&email={{email}}&password={{password}}&administrador=false",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"usuarios"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "{{idUsuario}}"
+								},
+								{
+									"key": "nome",
+									"value": "{{nome}}"
+								},
+								{
+									"key": "email",
+									"value": "{{email}}"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}"
+								},
+								{
+									"key": "administrador",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar usuário",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deve retornar a quantidade de usuário cadastrado\", function () {\r",
+									"    pm.expect(responseBody.quantidade).to.not.null\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_api_serverest}}/usuarios?_id={{idUsuario}}",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"usuarios"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "{{idUsuario}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar Usuario",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deve a mensagem que oregistro foi alterado com sucesso\", function () {\r",
+									"    pm.expect(responseBody.messge).to.be.eql(\"Registro alterado com sucesso\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Tanya Luiza\",\r\n  \"email\": \"Vincenza.Lueilwitz0@gmail.com\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"false\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api_serverest}}/usuarios/{{idUsuario}}",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"usuarios",
+								"{{idUsuario}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir usuário",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deve a mensagem que oregistro foi excluido com sucesso\", function () {\r",
+									"    pm.expect(responseBody.messge).to.be.eql(\"Registro excluído com sucesso\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_api_serverest}}/usuarios/{{idUsuario}}",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"usuarios",
+								"{{idUsuario}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"pm.environment.set('token', responseBody.authorization)\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deve retornar que o login realizado com sucesso\", function () {\r",
+									"    pm.expect(responseBody.message).to.be.eq(\"Login realizado com sucesso\")\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{email}}\",\r\n  \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api_serverest}}/login",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login ADM",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"pm.environment.set('token', responseBody.authorization)\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deve retornar que o login realizado com sucesso\", function () {\r",
+									"    pm.expect(responseBody.message).to.be.eq(\"Login realizado com sucesso\")\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{email_ADM}}\",\r\n  \"password\": \"{{passwordADM}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api_serverest}}/login",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produto",
+			"item": [
+				{
+					"name": "Cadastrar Produto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"pm.environment.set('idProduto', responseBody._id)\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deve retornar que o produto foi cadastrado com sucesso\", function () {\r",
+									"    pm.expect(responseBody.message).to.be.eq(\"Cadastro realizado com sucesso\")\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"{{$randomProduct}}\",\r\n  \"preco\": 470,\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": 381\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api_serverest}}/produtos",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar Produto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deve retornar que o produto foi alterado com sucesso\", function () {\r",
+									"    pm.expect(responseBody.message).to.be.eq(\"Registro alterado com sucesso\")\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"{{$randomProduct}}\",\r\n  \"preco\": 470,\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": 381\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api_serverest}}/produtos/{{idProduto}}",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"produtos",
+								"{{idProduto}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Produtos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deve retornar a quantidade de produto cadastrado\", function () {\r",
+									"    pm.expect(responseBody.quantidade).to.be.not.null\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deve retornar o id do produto\", function () {\r",
+									"    pm.expect(responseBody._id).to.be.not.null\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_api_serverest}}/produtos?_id={{idProduto}}",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"produtos"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "{{idProduto}}"
+								},
+								{
+									"key": "nome",
+									"value": "Bike",
+									"disabled": true
+								},
+								{
+									"key": "preco",
+									"value": "470",
+									"disabled": true
+								},
+								{
+									"key": "descricao",
+									"value": "Mouse",
+									"disabled": true
+								},
+								{
+									"key": "quantidade",
+									"value": "381",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Produto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deve retornar a quantidade de produto cadastrado\", function () {\r",
+									"    pm.expect(responseBody.quantidade).to.be.not.null\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deve retornar o id do produto\", function () {\r",
+									"    pm.expect(responseBody._id).to.be.not.null\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_api_serverest}}/produtos/{{idProduto}}",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"produtos",
+								"{{idProduto}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Produto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deve a mensagem que o registro foi excluido com sucesso\", function () {\r",
+									"    pm.expect(responseBody.message).to.be.eq(\"Registro excluído com sucesso\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_api_serverest}}/produtos/{{idProduto}}",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"produtos",
+								"{{idProduto}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carrinho",
+			"item": [
+				{
+					"name": "Cadastrar Carrinho",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"pm.environment.set('idCarrinho', responseBody._id)\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deve retornar que o carrinho foi cadastrado com sucesso\", function () {\r",
+									"    pm.expect(responseBody.message).to.be.eq(\"Cadastro realizado com sucesso\")\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"produtos\": [\r\n    {\r\n      \"idProduto\": \"{{idProduto}}\",\r\n      \"quantidade\": 1\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api_serverest}}/carrinhos",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"carrinhos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Carrinhos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api_serverest}}/carrinhos?_id={{idCarrinho}}",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"carrinhos"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "{{idCarrinho}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Carrinho",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api_serverest}}/carrinhos/{{idCarrinho}}",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"carrinhos",
+								"{{idCarrinho}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Concluir Compra",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deve a mensagem que o registro foi excluido com sucesso\", function () {\r",
+									"    pm.expect(responseBody.message).to.be.eq(\"Registro excluído com sucesso\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api_serverest}}/carrinhos/concluir-compra",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"carrinhos",
+								"concluir-compra"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancelar compra",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = JSON.parse(responseBody)\r",
+									"\r",
+									"\r",
+									"pm.test(\"Deve retornar o status cod 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deve a mensagem que o registro foi excluido com sucesso\", function () {\r",
+									"    pm.expect(responseBody.message).to.be.eq(\"Registro excluído com sucesso\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api_serverest}}/carrinhos/cancelar-compra",
+							"host": [
+								"{{base_api_serverest}}"
+							],
+							"path": [
+								"carrinhos",
+								"cancelar-compra"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "email",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": ""
+		},
+		{
+			"key": "idUsuario",
+			"value": ""
+		},
+		{
+			"key": "nome",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "email_ADM",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "passwordADM",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "nome_ADM",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idUsuarioADM",
+			"value": ""
+		},
+		{
+			"key": "idProduto",
+			"value": ""
+		},
+		{
+			"key": "idCarrinho",
+			"value": ""
+		}
+	]
+}

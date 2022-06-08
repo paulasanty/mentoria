@@ -1,0 +1,430 @@
+{
+	"info": {
+		"_postman_id": "30dbc9c8-903d-4c2b-a48b-2d864b72a84b",
+		"name": "Criar usuário",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST - Users  - Com sucesso",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var body = JSON.parse(responseBody)\r",
+							"\r",
+							"pm.test(\"Validar o retorno da requisição - Status Code 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar o retorno do e-mail cadastrado\", function () {\r",
+							"   pm.expect(body.data.attributes.email).to.not.null\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar o retorno do e-mail cadastrado\", function () {\r",
+							"   pm.expect(body.data.id).to.not.empty\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/vnd.tasksmanager.v2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": {\r\n        \"email\": \"{{$randomEmail}}\",\r\n        \"password\": \"123456\",\r\n        \"password_confirmation\": \"123456\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-de-tarefas.herokuapp.com/users",
+					"protocol": "https",
+					"host": [
+						"api-de-tarefas",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Users  - Com sucesso Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//var body = JSON.parse(responseBody)\r",
+							"//\r",
+							"//pm.test(\"Validar o retorno da requisição - Status Code 201\", function () {\r",
+							"//    pm.response.to.have.status(201);\r",
+							"//});\r",
+							"//\r",
+							"//pm.test(\"Validar o retorno do e-mail cadastrado\", function () {\r",
+							"//   pm.expect(body.data.attributes.email).to.not.null\r",
+							"//});\r",
+							"//\r",
+							"//pm.test(\"Validar o retorno do e-mail cadastrado\", function () {\r",
+							"//   pm.expect(body.data.id).to.not.empty\r",
+							"//});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/vnd.tasksmanager.v2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"user\": {\r\n    \"id\": \"1064\"\r\n    \"email\": \"leanne.nicolas43@yahoo.com\",\r\n    \"password\": \"123456\",\r\n    \"password_confirmation\": \"123456\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-de-tarefas.herokuapp.com/users",
+					"protocol": "https",
+					"host": [
+						"api-de-tarefas",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Users  - Com sucesso Copy 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//var body = JSON.parse(responseBody)\r",
+							"//\r",
+							"//pm.test(\"Validar o retorno da requisição - Status Code 201\", function () {\r",
+							"//    pm.response.to.have.status(201);\r",
+							"//});\r",
+							"//\r",
+							"//pm.test(\"Validar o retorno do e-mail cadastrado\", function () {\r",
+							"//   pm.expect(body.data.attributes.email).to.not.null\r",
+							"//});\r",
+							"//\r",
+							"//pm.test(\"Validar o retorno do e-mail cadastrado\", function () {\r",
+							"//   pm.expect(body.data.id).to.not.empty\r",
+							"//});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/vnd.tasksmanager.v2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"user\": {\r\n    \"id\": \"1064\",\r\n    \"email\": \"leanne.nicolas43@yahoo.com\",\r\n    \"password\": \"123456\",\r\n    \"password_confirmation\": \"123456\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-de-tarefas.herokuapp.com/users",
+					"protocol": "https",
+					"host": [
+						"api-de-tarefas",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Users  - email já cadastrado",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/vnd.tasksmanager.v2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"user\": {\r\n    \"email\": \"faker1478@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"password_confirmation\": \"123456\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-de-tarefas.herokuapp.com/users",
+					"protocol": "https",
+					"host": [
+						"api-de-tarefas",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - USER - E-mail vazio",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/vnd.tasksmanager.v2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"user\": {\r\n    \"email\": \"\",\r\n    \"password\": \"123456\",\r\n    \"password_confirmation\": \"123456\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-de-tarefas.herokuapp.com/users",
+					"protocol": "https",
+					"host": [
+						"api-de-tarefas",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Users email Boolean",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/vnd.tasksmanager.v2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"user\": {\r\n    \"email\": false,\r\n    \"password\": \"123456\",\r\n    \"password_confirmation\": \"123456\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-de-tarefas.herokuapp.com/users",
+					"protocol": "https",
+					"host": [
+						"api-de-tarefas",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST -Uses - Email numero",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/vnd.tasksmanager.v2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"user\": {\r\n    \"email\": {},\r\n    \"password\": \"123456\",\r\n    \"password_confirmation\": \"123456\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-de-tarefas.herokuapp.com/users",
+					"protocol": "https",
+					"host": [
+						"api-de-tarefas",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "password",
+			"value": ""
+		}
+	]
+}
